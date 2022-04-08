@@ -22,7 +22,7 @@
 
 ---
 
-### Day 1 - Linux
+### Day 2 - Linux
 
 **Focus**: Today's learning focus on understanding the Linux Operating system
 
