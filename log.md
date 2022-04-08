@@ -16,9 +16,9 @@
 
 **Thoughts**: Today's learning was super hands-on. It was create a joy playing installing different OSes on the host computer. I installed a web server, creating a public network, and access the web server from another computer. That was fun.
 
-**Work & Resources**:\
-[Public Network](https://www.vagrantup.com/docs/networking/public_network)
-![Vagrant commands](resources/docs/vagrant/)
+**Work & Resources**:
+- [Public Network](https://www.vagrantup.com/docs/networking/public_network)
+- [Vagrant commands](resources/docs/vagrant/)
 
 ---
 
@@ -37,5 +37,5 @@
 
 **Thoughts**: Today's learning was more theoretical in nature. It was a joy reviewing the the boot process, kernel, init, process management, scheduling, etc. Login to the Ubuntu linux shell and navigate to different part of the file system. playing with command such dmesg, cat /proc/cpuinfo, etc. I had lots of fun.
 
-**Work & Resources**:\
-[Linux Boot Process](https://www.thegeekstuff.com/2011/02/linux-boot-process/)
+**Work & Resources**:
+- [Linux Boot Process](https://www.thegeekstuff.com/2011/02/linux-boot-process/)
