@@ -18,7 +18,7 @@
 
 **Work & Resources**:
 - [Public Network](https://www.vagrantup.com/docs/networking/public_network)
-- [Vagrant commands](resources/docs/vagrant/)
+- [Vagrant commands](resources/docs/vagrant/command.md)
 
 ---
 
@@ -39,3 +39,22 @@
 
 **Work & Resources**:
 - [Linux Boot Process](https://www.thegeekstuff.com/2011/02/linux-boot-process/)
+
+---
+
+## Day 3 - Files and Directories
+
+**Focus**: Today's learning focus on Linux File and Directories
+
+**Progress**:
+
+- Basic Linux commands
+- Read File
+- Create and delete file/directory
+- using apt to install applications
+
+**Thoughts**: Today was a review for me. 
+
+**Work & Resources**:
+- [Files and directories](resources/docs/linux/file-dir.md)
+
