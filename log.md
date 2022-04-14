@@ -58,3 +58,21 @@
 **Work & Resources**:
 - [Files and directories](resources/docs/linux/file-dir.md)
 
+---
+
+## Day 4 - Manage Files and Directories
+
+**Focus**: Today's learning focus on managing file and directories
+
+**Progress**:
+
+- Copy files and directories
+- Renaming and moving file
+- Search files using find, diff, and file
+- using grep to search a word
+- Using the powerful sed command search file
+
+**Thoughts**: Today was a review for me. This time I spend lots of time experimenting with sed.
+
+**Work & Resources**:
+-  None
