@@ -76,3 +76,22 @@
 
 **Work & Resources**:
 -  None
+
+---
+
+## Day 4 - User Management
+
+**Focus**: Today's learning focus on managing users
+
+**Progress**:
+
+- Understand the different type of users in Linux
+- practicing creating user using the adduser command
+- using usermod to modify a user account
+- making sense of file permissions
+- Changing permissions and ownership of files and directories
+
+**Thoughts**: Again this is another review day for me. Each I review this stuff I have a different perspective of things. I got to really experiment the commands and try different scenario. This was a pretty cool lesson.
+
+**Work & Resources**:
+-  None
