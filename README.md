@@ -1,8 +1,8 @@
-# 100 Days Of DevOps Challenge
+# My daily DevOps Challenges
 
-Welcome to my 100 days DevOps Challenges!
+Welcome to my My daily DevOps Challenges!
 
-I'm committed one hour, every day, for the next 100 days going DevOps related work.
+I'm committed one hour, every day, doing DevOps related work.
 
 ## My Rules
 
