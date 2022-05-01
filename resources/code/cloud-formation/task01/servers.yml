@@ -1,0 +1,153 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: This template deploys the security groups needed by the task1 project
+
+Parameters:
+  EnvironmentName:
+    Description: An Environment name that will be prefixed to resources
+    Type: String
+    Default: 'DevOps-Task'
+
+  MasterUserName:
+    Description: The username for our database.
+    Type: String
+    Default: 'root'
+
+  MasterUserPassword:
+    Description: The password for the database.
+    Type: String
+    NoEcho: true
+    Default: 'password'
+
+Resources:
+  #**************** Subnet Groups *****************
+  DBSubnetGroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: Used the RDS Deployment
+      SubnetIds:
+        - Fn::ImportValue: !Sub ${EnvironmentName}-Private-2A
+        - Fn::ImportValue: !Sub ${EnvironmentName}-Private-2B
+      Tags:
+        - Key: Name
+          Value: DevopsTaskDBSubnetGroup
+
+  #**************** Security Groups Section *****************
+  SshSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: To allow ssh traffic to the bastion host
+      VpcId:
+        Fn::ImportValue: !Sub ${EnvironmentName}-VPC2
+      SecurityGroupIngress: # Traffic coming in
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          # This is a security risk. But use for testing purposes only
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: !Sub ${EnvironmentName}-SSH-SG
+
+  DBServerSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: To allow ssh traffic to the bastion host
+      VpcId:
+        Fn::ImportValue: !Sub ${EnvironmentName}-VPC2
+      SecurityGroupIngress: # Traffic coming in from app server
+        - IpProtocol: tcp
+          FromPort: 3306
+          ToPort: 3306
+          CidrIp: 10.0.1.0/24
+      SecurityGroupEgress: # Traffic out from DB server
+        - IpProtocol: tcp
+          FromPort: 0
+          ToPort: 65535
+          CidrIp: 10.0.1.0/24
+      Tags:
+        - Key: Name
+          Value: !Sub ${EnvironmentName}-DB-SG
+
+  # DBSecurityGroup:
+  #   Type: AWS::RDS::DBSecurityGroup
+  #   Properties:
+  #     GroupDescription: To allow ssh traffic to the bastion host
+  #     EC2VpcId:
+  #       Fn::ImportValue: DevOps-Task-VPC2
+  #     DBSecurityGroupIngress:
+  #       - EC2SecurityGroupName:
+  #           Ref: DBServerSecurityGroup
+
+  #**************** BEC2 INstances *****************
+  BastionHost:
+    Type: AWS::EC2::Instance
+    Properties:
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          apt-get update -y
+          apt-get install unzip awscli -y
+      SecurityGroupIds: # Needed since we are provisioned for a specific VPC
+        - Ref: SshSecurityGroup
+      KeyName: 'lab-key'
+      SubnetId:
+        Fn::ImportValue: !Sub ${EnvironmentName}-Public-2A
+      InstanceType: t2.micro
+      ImageId: ami-0a91cd140a1fc148a
+      BlockDeviceMappings:
+        - DeviceName: '/dev/sdk'
+          Ebs:
+            VolumeSize: 10
+      Tags:
+        - Key: Name
+          Value: !Sub ${EnvironmentName}-Bastion
+
+  #**************** RDS MySql *****************
+  RDSDBInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      # Engine Option
+      Engine: MySQL
+      EngineVersion: 8.0.20
+
+      # Template
+
+      # Settings
+      DBInstanceIdentifier: my-app-db
+      MasterUsername: !Ref MasterUserName
+      MasterUserPassword: MasterUserPassword
+
+      # DB Instance class and Size
+      DBInstanceClass: db.t2.micro
+
+      # Storage
+      StorageType: gp2
+      AllocatedStorage: 20
+      # - Enable storage autoscaling
+
+      # Connectivity
+      # - Virtual private cloud (VPC)
+      # - Create Subnet Group
+      DBSubnetGroupName: !Ref DBSubnetGroup
+
+      # - Set Public access to no
+      PubliclyAccessible: false
+
+      # - Create VPC Security Group
+      # VPCSecurityGroups: !Ref DBServerSecurityGroup
+
+      # Availabiluty Zone
+      AvailabilityZone: us-east-2a
+
+      SourceRegion: us-east-2b
+
+      # Database port 3306
+      Port: 3306
+
+      VPCSecurityGroups:
+        - !GetAtt DBServerSecurityGroup.GroupId
+
+      Tags:
+        - Key: Name
+          Value: !Sub ${EnvironmentName}-DB-MySql

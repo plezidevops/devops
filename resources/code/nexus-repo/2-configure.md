@@ -1,0 +1,15 @@
+- Setup the Nexus Server on DigitalOcean (Droplet)
+  - Create ubuntu droplet and set ssh authentication
+  - configure the firewall (for ssh and app access)
+- Install Java and Naxus on the Cloud Server
+  - Install java 8
+  - Install Nexus
+- Create a Linux User to login to Server (instead of using Root User)
+  - adduser username
+  - sudo - username
+- Configure and start Nexus
+  - edit nexus/bin/nexus.rc to have nexus ran as username
+  - nexus/bin/nexus start
+  - ps -aux | grep java
+  - netstat -lpnt
+- Connecting to Nexus

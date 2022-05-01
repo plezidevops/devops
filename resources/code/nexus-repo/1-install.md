@@ -1,0 +1,21 @@
+- Setup Server on DigitalOcean (Droplet)
+  - Sign up with digital ocean <https://try.digitalocean.com/freetrialoffer/>
+  - Create ubuntu droplet and set ssh authentication
+  - configure the firewall (for ssh and app access)
+- Install Java on Cloud Server
+  - Install java 8
+- Deploy and run an application on Cloud Server
+  - Build app using gradle
+  - Copy articfact to the droplet server
+  - Run the application
+- Inspecting the application port and process id
+  - ps -aux | grep java
+  - netstat -lpnt
+- Create a Linux User to login to Server (instead of using Root User)
+  - adduser username
+  - usermod -aG sudo username
+  - sudo - username
+- Setup SSH key for the user
+  - Login to the doplet as root
+  - cp -R .ssh /home/username
+  - chown -R username:username /home/username/.ssh
