@@ -8,7 +8,7 @@ DevOps has always fascinating me, but I never created the time to concentrate on
 
 ---
 
-### Day 1 (6/21/23) - Devops's tools and their roles
+### Day 1 (6/23/23) - Devops's tools and their roles
 
 **Focus**: Today's learning focuses on devops tools
 
