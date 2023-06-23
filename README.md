@@ -12,7 +12,7 @@ I'm committed one hour, every day, doing DevOps related work.
 
 ## Contents
 
-The stuff I create, such as diagrams, scripts, installation manuals will be stored here. It will contain invaluable documents for others who wishes to duplicate my work can use:
+The stuff I create, such as diagrams, scripts, installation manuals will be stored here. It will contain invaluable documents for others who wishes to duplicate my work:
 
-- [Activity Log](log.md)
+- [Daily activity Log](log.md)
 - [Resources](resources.md)
